@@ -13,7 +13,46 @@ public class MergeArrays {
                 i--;
             } else {
                 X[k] = Y[j];
-                j--;
+                j--; class MergeArrays {
+
+                    public static void mergeArrays(int[] arrayX, int[] arrayY) {
+                        int lengthX = arrayX.length;
+                        int lengthY = arrayY.length;
+        
+                        int index = lengthX - 1;
+                        for (int i = lengthX - 1; i >= 0; i--) {
+                            if (arrayX[i] != 0) {
+                                arrayX[index] = arrayX[i];
+                                index--;
+                            }
+                        }
+
+                        int pointerX = index + 1;
+                        int pointerY = 0;
+                        int mergeIndex = 0;
+                        while (mergeIndex < lengthX) {
+                            if (pointerY < lengthY && (pointerX >= lengthX || arrayY[pointerY] < arrayX[pointerX])) {
+                                arrayX[mergeIndex] = arrayY[pointerY];
+                                pointerY++;
+                            } else {
+                                arrayX[mergeIndex] = arrayX[pointerX];
+                                pointerX++;
+                            }
+                            mergeIndex++;
+                        }
+                    }
+                
+                    public static void main(String[] args) {
+                        int[] arrayX = {0, 2, 0, 3, 0, 5, 6, 0, 0};
+                        int[] arrayY = {1, 8, 9, 10, 15};
+                
+                        mergeArrays(arrayX, arrayY);
+
+                        for (int num : arrayX) {
+                            System.out.print(num + " ");
+                        }
+                    }
+                }
             }
             k--;
         }
